@@ -1,0 +1,12 @@
+--- diffs/cpu_usage.py	2025-03-21 01:33:09
++++ diffs/cpu_usage_fixed.py	2025-03-21 01:37:00
+@@ -4,7 +4,8 @@
+ 
+ 
+ def check_cpu_usage(percent):
+-    usage = psutil.cpu_percent()
++    usage = psutil.cpu_percent(1)
++    print(f'DEBUG: usage: {usage}')
+     return usage < percent
+ 
+ 
