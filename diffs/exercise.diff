@@ -1,0 +1,12 @@
+--- exercise_1.txt	2025-03-21 12:01:56
++++ exercise_2.txt	2025-03-21 12:01:56
+@@ -1,6 +1,6 @@
+-Menu1:
++Menu:
+ 
+ Apples
+ Bananas
+-Oranges
+-Pears
++Grapes
++Strawberries

@@ -1,5 +1,34 @@
 # GitandHub
 
+<!-- TOC -->
+* [GitandHub](#gitandhub)
+  * [MODULE 1](#module-1)
+    * [Introduction](#introduction)
+    * [Before Version Control](#before-version-control)
+    * [Version Control Systems](#version-control-systems)
+    * [Using Git](#using-git)
+    * [Qwiklabs Assessment](#qwiklabs-assessment)
+  * [MODULE 2](#module-2)
+    * [Advanced Git Interaction](#advanced-git-interaction)
+    * [Undoing Things](#undoing-things)
+    * [Branching and Merging](#branching-and-merging)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-1)
+  * [MODULE 3](#module-3)
+    * [Introduction to GitHub](#introduction-to-github)
+    * [Using a Remote Repository](#using-a-remote-repository)
+    * [Secure Shells & API Keys](#secure-shells--api-keys)
+    * [Solving Conflicts](#solving-conflicts)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-2)
+  * [MODULE 4](#module-4)
+    * [Pul Requests](#pul-requests)
+    * [Code Reviews](#code-reviews)
+    * [Managing Projects](#managing-projects)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-3)
+    * [Preparing your Resume](#preparing-your-resume)
+    * [Wrap Up](#wrap-up)
+<!-- TOC -->
+
+
 ## MODULE 1
 
 ### Introduction
@@ -48,7 +77,11 @@
         - `-` indicates line was removed
         - `+` indicates line was added
 3. Applying changes
-   - 
+    - `patch` command will allow us to apply changes from diff file
+    - we use this method for following reasons
+      - original code could have changed
+      - `patch` command can detect that there were changes made to the file and will do its best to apply the diff anyway
+      - structure, it's easy even for larger files 
    ```shell
    cat diffs/cpu_usage.py
    ```
@@ -64,11 +97,18 @@
       ```shell
    cat diffs/cpu_usage.py
    ```
-4. Practical Application of diff and path
+4. Practical Application of diff and patch
+   - `return` statements are only used inside functions
+     - change current to a function
+     - use `sys` module to ext
+   - original copy is to compared with fixed copy
+   - then generate diff copy
+   - finally use `patch` command to apply changes to original file
 
 ### Version Control Systems
 
 1. What is Version Control?
+   - 
 2. Version Control and Automation
 3. What is Git?
 4. Installing Git
