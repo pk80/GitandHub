@@ -8,6 +8,7 @@
         * [Before Version Control](#before-version-control)
         * [Version Control Systems](#version-control-systems)
         * [Using Git](#using-git)
+        * [Glossary](#glossary)
         * [Qwiklabs Assessment](#qwiklabs-assessment)
     * [MODULE 2](#module-2)
         * [Advanced Git Interaction](#advanced-git-interaction)
@@ -302,55 +303,125 @@ making commits.
 - Add files to this repository
 - Edit the files
 - Commit the changes to the repository.
-
-```text
-# Install Git
-sudo apt update
-sudo apt install git
-git --version
-...
-# Initialize new repository
-mkdir my-git-repo
-cd my-git-repo
-git init
-...
-# Configure Git
-git config --global user.name '<your name>'
-git config --global user.email '<your email>'
-
-warning: user.name has multiple values
-error: cannot overwrite multiple values with a single value
-       Use a regexp, --add or --replace-all to change user.name.
-...
-# Git Operations
-nano README
-This is my first repository.
-Ctrl+o, Enter and Ctrl+x
-git status
-git add README
-git commit
-This is my firs commit!
-Ctrl+o, Enter and Ctrl+x
-nano README
-A repository is a location where all the files of a particular project are stored.
-Ctrl+o, Enter and Ctrl+x
-git status
-git diff README
-git add README
-git status
-git commit -m "This is my second commit."
-git log
-```
+    ```text
+    # Install Git
+    sudo apt update
+    sudo apt install git
+    git --version
+    ...
+    # Initialize new repository
+    mkdir my-git-repo
+    cd my-git-repo
+    git init
+    ...
+    # Configure Git
+    git config --global user.name '<your name>'
+    git config --global user.email '<your email>'
+    
+    warning: user.name has multiple values
+    error: cannot overwrite multiple values with a single value
+           Use a regexp, --add or --replace-all to change user.name.
+    ...
+    # Git Operations
+    nano README
+    This is my first repository.
+    Ctrl+o, Enter and Ctrl+x
+    git status
+    git add README
+    git commit
+    This is my firs commit!
+    Ctrl+o, Enter and Ctrl+x
+    nano README
+    A repository is a location where all the files of a particular project are stored.
+    Ctrl+o, Enter and Ctrl+x
+    git status
+    git diff README
+    git add README
+    git status
+    git commit -m "This is my second commit."
+    git log
+    ```
 
 ## MODULE 2
 
 ### Advanced Git Interaction
 
-- Using Git Locally
-- Skipping the Staging Area
-- Getting More Information form the user / about our changes
-- Deleting and Renaming Files
-
+1. Using Git Locally
+2. Skipping the Staging Area
+    - `git commit -a` : to stage any changes to tracked files and commit them in one step
+    ```text
+    git commit -a -m 'message.....' # a small change and want to skip the staging step
+    git commit -a
+    git commit -a
+    git commit -m 'final message....'
+    ```
+    - Git uses the HEAD alias to represent the currently checked-out snapshot of your project
+3. Getting More Information form the user / about our changes
+    ```text
+    # log patch flag show associated patches
+    git log -p
+    # take commit id and shows it
+    git show <commit id>
+    git log --stat
+    git diff
+    git add -p
+    git diff
+    git diff --staged
+    git commit -m '......'
+    ```
+4. Deleting and Renaming Files
+    ```text
+    ls -l
+    ...
+    # rm will delete file, do not allow from being tracked by git 
+    # and file is staged to commit
+    git rm <filename>
+    ls -l
+    ...
+    git status
+    ...
+    git commit -m 'Delete unneeded processes file'
+    ...
+    # rename a file
+    # and file is staged to commit
+    git mv <old_filename> <new_filename>
+    git status
+    ...
+    git commit -m 'New name for old_filename'
+    ...
+    echo .DS_STORE > .gitignore
+    ls -la
+    ...
+    git add .gitignore
+    git commit -m 'Add a gitignore file, ignoring .DS_STORE files'
+    ```
+5. Cheat sheet
+    ```text
+    $ git commit -a
+     automatically stages the files that have been locally modified. 
+     New files which have not been published yet are not affected.
+    $ git log -p
+     produces patch text that displays the lines of code that were 
+     changed in each commit in the current repo. 
+    $ git show
+     shows you one or more object(s) such as blobs, trees, tags, and commits.
+    $ git diff
+     is similar to the Linux `diff` command, and can show the changes 
+     between commits, changes between the working tree and index, 
+     changes between two trees, changes from a merge, and so on.
+    $ git diff --staged
+     is an alias of $ git diff --cached, which  shows all staged 
+     files compared to the named commit.
+    $ git add -p
+     allows a user to interactively review patches before adding to 
+     the current commit.
+    $ git mv
+     is similar to the Linux `mv` command. This command can move or 
+     rename a file, directory, or symlink.
+    $ git rm 
+     is similar to the Linux `rm` command. This command deletes or 
+     removes a file from the working tree.
+    ```
 ### Undoing Things
 
 - Undoing Changes Before Committing
