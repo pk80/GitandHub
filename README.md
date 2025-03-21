@@ -1,32 +1,34 @@
 # GitandHub
 
 <!-- TOC -->
+
 * [GitandHub](#gitandhub)
-  * [MODULE 1](#module-1)
-    * [Introduction](#introduction)
-    * [Before Version Control](#before-version-control)
-    * [Version Control Systems](#version-control-systems)
-    * [Using Git](#using-git)
-    * [Glossary](#glossary)
-    * [Qwiklabs Assessment](#qwiklabs-assessment)
-  * [MODULE 2](#module-2)
-    * [Advanced Git Interaction](#advanced-git-interaction)
-    * [Undoing Things](#undoing-things)
-    * [Branching and Merging](#branching-and-merging)
-    * [Qwiklabs Assessment](#qwiklabs-assessment-1)
-  * [MODULE 3](#module-3)
-    * [Introduction to GitHub](#introduction-to-github)
-    * [Using a Remote Repository](#using-a-remote-repository)
-    * [Secure Shells & API Keys](#secure-shells--api-keys)
-    * [Solving Conflicts](#solving-conflicts)
-    * [Qwiklabs Assessment](#qwiklabs-assessment-2)
-  * [MODULE 4](#module-4)
-    * [Pul Requests](#pul-requests)
-    * [Code Reviews](#code-reviews)
-    * [Managing Projects](#managing-projects)
-    * [Qwiklabs Assessment](#qwiklabs-assessment-3)
-    * [Preparing your Resume](#preparing-your-resume)
-    * [Wrap Up](#wrap-up)
+    * [MODULE 1](#module-1)
+        * [Introduction](#introduction)
+        * [Before Version Control](#before-version-control)
+        * [Version Control Systems](#version-control-systems)
+        * [Using Git](#using-git)
+        * [Glossary](#glossary)
+        * [Qwiklabs Assessment](#qwiklabs-assessment)
+    * [MODULE 2](#module-2)
+        * [Advanced Git Interaction](#advanced-git-interaction)
+        * [Undoing Things](#undoing-things)
+        * [Branching and Merging](#branching-and-merging)
+        * [Qwiklabs Assessment](#qwiklabs-assessment-1)
+    * [MODULE 3](#module-3)
+        * [Introduction to GitHub](#introduction-to-github)
+        * [Using a Remote Repository](#using-a-remote-repository)
+        * [Secure Shells & API Keys](#secure-shells--api-keys)
+        * [Solving Conflicts](#solving-conflicts)
+        * [Qwiklabs Assessment](#qwiklabs-assessment-2)
+    * [MODULE 4](#module-4)
+        * [Pul Requests](#pul-requests)
+        * [Code Reviews](#code-reviews)
+        * [Managing Projects](#managing-projects)
+        * [Qwiklabs Assessment](#qwiklabs-assessment-3)
+        * [Preparing your Resume](#preparing-your-resume)
+        * [Wrap Up](#wrap-up)
+
 <!-- TOC -->
 
 ## MODULE 1
@@ -487,13 +489,97 @@ making commits.
     create mode 100644 changes/gather-information.sh
     ```
 3. Rollbacks
-```text
-cd changes
-nano all_checks.py
-----
-git commit -a -m 'Add call to disk_full function'
-```
+    - `git revert` command will undo and creates a new commit containing inversion of all changes made in bad commit in
+      order to cancel them
+      out
+    -
+    ```text
+    cd changes
+    nano all_checks.py
+    ----
+    git commit -a -m 'Add call to disk_full function'
+    ----
+    ./all_checks.py
+    Traceback (most recent call last):
+      File "/Users/praveen/PycharmProjects/GitandHub/./changes/all_checks.py", line 23, in <module>
+        main()
+        ~~~~^^
+      File "/Users/praveen/PycharmProjects/GitandHub/./changes/all_checks.py", line 15, in main
+        if disk_full():
+           ^^^^^^^^^
+    NameError: name 'disk_full' is not defined
+    ----
+    git revert HEAD
+    # update and quit the commit message with reason 
+    ----
+    ./all_checks.py
+    Everything OK!
+    ----
+    # log of last 2 entries
+    git log -p -2
+    ```
 4. Identifying a commit
+    - commit id is a 40 char id called hash, calculated using SHA1
+    - these hash codes are used to guarantee the consistency of our repository means that we get exactly what we expect
+    ```text
+    git log -1
+    # e3c0478ed90f3de8c1e2648ae6e95e54429bcda4
+    git show <commit id>
+    git show e3 # not enough
+    git show e3c0 # enough
+    git revert e3c0
+    git revert 7d71
+    git show 7d1de19
+    ```
+5. Cheat sheet
+
+    ```markdown
+    **Study guide: Git Revert**
+    When writing and committing code, making mistakes is a common occurrence. Thankfully, there are
+    multiple ways for you to revert or undo your mistakes. Take a look at the helpful commands below.
+    
+    **git checkout**
+    is used to switch branches. For example, you might want to pull from your main branch.
+    In this case, you would use the command git checkout main. This will switch to your main branch,
+    allowing you to pull. Then you could switch to another branch by using the command git checkout <branch>.
+    
+    **git reset**
+    can be somewhat difficult to understand. Say you have just used the command git add. to stage all of
+    your changes, but then you decide that you are not ready to stage those files. You could use the command
+    git reset to undo the staging of your files.
+    
+    There are some other useful articles online, which discuss more aggressive approaches to
+    resetting the repo
+    (Git repository). As discussed in this article, doing a hard reset can be extremely dangerous.
+    With a hard reset, you run the risk of losing your local changes. There are safer ways to achieve the same effect.
+    For example, you could run git stash, which will temporarily shelve or stash your current changes. This way,
+    your current changes are kept safe, and you can come back to them if needed.
+    
+    **git commit --amend**
+    is used to make changes to your most recent commit after-the-fact, which can be useful for making notes about or
+    adding files to your most recent commit. Be aware that this git --amend command rewrites and replaces your previous
+    commit, so it is best not to use this command on a published commit.
+    
+    **git revert**
+    makes a new commit which effectively rolls back a previous commit. Unlike the git reset command which rewrites
+    your commit history, the git revert command creates a new commit which undoes the changes in a specific commit.
+    Therefore, a revert command is generally safer than a reset command.
+    
+    For more information on these and other methods to undo something in Git, checkout this
+    [Git Basics - Undoing Things](https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things) article.
+    
+    Additionally, there are some interesting considerations about how git object data is stored, such as the usage of SHA-1.
+    
+    SHA-1 is what’s known as a hash function, a cryptographic function that generates a digital fingerprint of a file.  
+    Theoretically, it’s impossible for two different files to have the same SHA-1 hash, which means that SHA-1 can be
+    used for two things:
+    
+    - Confirming that the contents of a file have not changed (digital signature).
+    - Serving as an identifier for the file itself (a token or fingerprint).
+    
+    Git calculates a hash for every commit. Those hashes are displayed by commands like git log or in various pages
+    on Github. For commands like git revert, you can then use the hash to refer to a specific commit.
+    ```
 
 ### Branching and Merging
 
