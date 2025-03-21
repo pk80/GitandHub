@@ -140,11 +140,11 @@
 4. Installing Git
     - installation
     ```text
-        apt install git 
-        or
-        yum install git
-        ...
-        git --version
+    apt install git 
+    or
+    yum install git
+    ...
+    git --version
     ```
     - IDEs : Atom, Notepad++, VScode etc...
 5. Installing Git on Windows
@@ -156,24 +156,24 @@
 1. First steps with Git
     - Follow along
     ```text
-        # configurations for tracking by VCS
-        git config --global user.email '<your email>'
-        git config --global user.name '<your name>'
-        ...
-        # initialise an empty git repository in current directory
-        mkdir checks
-        cd checks
-        git init
-        ...
-        # git repository folder
-        ls -la .git/
-        ...
-        # to make git track untracked files add them to git project
-        git add some_file.py
-        # to get information about current working tree and pending changes
-        git status
-        # commit to the git directory
-        git commit
+    # configurations for tracking by VCS
+    git config --global user.email '<your email>'
+    git config --global user.name '<your name>'
+    ...
+    # initialise an empty git repository in current directory
+    mkdir checks
+    cd checks
+    git init
+    ...
+    # git repository folder
+    ls -la .git/
+    ...
+    # to make git track untracked files add them to git project
+    git add some_file.py
+    # to get information about current working tree and pending changes
+    git status
+    # commit to the git directory
+    git commit
     ```
     - The area outside the git directory is working tree
     - Working tree is the current version of your project
@@ -190,13 +190,26 @@
         - committed (stored in a snapshot in git directory)
     - Untracked files are not the part of snapshots
     ```text
-        ls -l
-        git status
-        git commit -m 'some message about the commit'
+    ls -l
+    git status
+    ...
+    git add <modified file>
+    git commit -m 'some message about the commit'
     ```
-   - 
-
 3. The Basic Git Workflow
+    - The commit without message will be aborted (meaning no commit will happen)
+    ```text
+    mkdir scripts
+    cd scripts
+    git init
+    # current configuration of git
+    git config -l
+    ... after some changes
+    git status
+    git add <modified file>
+    git commit -m 'message about commit'
+    git status
+    ```
 4. Anatomy of commit message
 
 ### Qwiklabs Assessment
