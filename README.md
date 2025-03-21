@@ -1,34 +1,32 @@
 # GitandHub
 
 <!-- TOC -->
-
 * [GitandHub](#gitandhub)
-    * [MODULE 1](#module-1)
-        * [Introduction](#introduction)
-        * [Before Version Control](#before-version-control)
-        * [Version Control Systems](#version-control-systems)
-        * [Using Git](#using-git)
-        * [Glossary](#glossary)
-        * [Qwiklabs Assessment](#qwiklabs-assessment)
-    * [MODULE 2](#module-2)
-        * [Advanced Git Interaction](#advanced-git-interaction)
-        * [Undoing Things](#undoing-things)
-        * [Branching and Merging](#branching-and-merging)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-1)
-    * [MODULE 3](#module-3)
-        * [Introduction to GitHub](#introduction-to-github)
-        * [Using a Remote Repository](#using-a-remote-repository)
-        * [Secure Shells & API Keys](#secure-shells--api-keys)
-        * [Solving Conflicts](#solving-conflicts)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-2)
-    * [MODULE 4](#module-4)
-        * [Pul Requests](#pul-requests)
-        * [Code Reviews](#code-reviews)
-        * [Managing Projects](#managing-projects)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-3)
-        * [Preparing your Resume](#preparing-your-resume)
-        * [Wrap Up](#wrap-up)
-
+  * [MODULE 1](#module-1)
+    * [Introduction](#introduction)
+    * [Before Version Control](#before-version-control)
+    * [Version Control Systems](#version-control-systems)
+    * [Using Git](#using-git)
+    * [Glossary](#glossary)
+    * [Qwiklabs Assessment](#qwiklabs-assessment)
+  * [MODULE 2](#module-2)
+    * [Advanced Git Interaction](#advanced-git-interaction)
+    * [Undoing Things](#undoing-things)
+    * [Branching and Merging](#branching-and-merging)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-1)
+  * [MODULE 3](#module-3)
+    * [Introduction to GitHub](#introduction-to-github)
+    * [Using a Remote Repository](#using-a-remote-repository)
+    * [Secure Shells & API Keys](#secure-shells--api-keys)
+    * [Solving Conflicts](#solving-conflicts)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-2)
+  * [MODULE 4](#module-4)
+    * [Pul Requests](#pul-requests)
+    * [Code Reviews](#code-reviews)
+    * [Managing Projects](#managing-projects)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-3)
+    * [Preparing your Resume](#preparing-your-resume)
+    * [Wrap Up](#wrap-up)
 <!-- TOC -->
 
 ## MODULE 1
@@ -424,10 +422,21 @@ making commits.
     ```
 ### Undoing Things
 
-- Undoing Changes Before Committing
-- Amending commits
-- Rollbacks
-- Identifying a commit
+1. Undoing Changes Before Committing
+    ```text
+    git status
+    git checkout <filename>
+    git status
+    exe_out > output.txt
+    git add *
+    git status
+    git reset HEAD output.txt
+    git satus
+    git commit -m 'it should be os.path.exists'
+    ```
+2. Amending commits
+3. Rollbacks
+4. Identifying a commit
 
 ### Branching and Merging
 
