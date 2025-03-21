@@ -1,34 +1,32 @@
 # GitandHub
 
 <!-- TOC -->
-
 * [GitandHub](#gitandhub)
-    * [MODULE 1](#module-1)
-        * [Introduction](#introduction)
-        * [Before Version Control](#before-version-control)
-        * [Version Control Systems](#version-control-systems)
-        * [Using Git](#using-git)
-        * [Glossary](#glossary)
-        * [Qwiklabs Assessment](#qwiklabs-assessment)
-    * [MODULE 2](#module-2)
-        * [Advanced Git Interaction](#advanced-git-interaction)
-        * [Undoing Things](#undoing-things)
-        * [Branching and Merging](#branching-and-merging)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-1)
-    * [MODULE 3](#module-3)
-        * [Introduction to GitHub](#introduction-to-github)
-        * [Using a Remote Repository](#using-a-remote-repository)
-        * [Secure Shells & API Keys](#secure-shells--api-keys)
-        * [Solving Conflicts](#solving-conflicts)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-2)
-    * [MODULE 4](#module-4)
-        * [Pul Requests](#pul-requests)
-        * [Code Reviews](#code-reviews)
-        * [Managing Projects](#managing-projects)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-3)
-        * [Preparing your Resume](#preparing-your-resume)
-        * [Wrap Up](#wrap-up)
-
+  * [MODULE 1](#module-1)
+    * [Introduction](#introduction)
+    * [Before Version Control](#before-version-control)
+    * [Version Control Systems](#version-control-systems)
+    * [Using Git](#using-git)
+    * [Glossary](#glossary)
+    * [Qwiklabs Assessment](#qwiklabs-assessment)
+  * [MODULE 2](#module-2)
+    * [Advanced Git Interaction](#advanced-git-interaction)
+    * [Undoing Things](#undoing-things)
+    * [Branching and Merging](#branching-and-merging)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-1)
+  * [MODULE 3](#module-3)
+    * [Introduction to GitHub](#introduction-to-github)
+    * [Using a Remote Repository](#using-a-remote-repository)
+    * [Secure Shells & API Keys](#secure-shells--api-keys)
+    * [Solving Conflicts](#solving-conflicts)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-2)
+  * [MODULE 4](#module-4)
+    * [Pul Requests](#pul-requests)
+    * [Code Reviews](#code-reviews)
+    * [Managing Projects](#managing-projects)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-3)
+    * [Preparing your Resume](#preparing-your-resume)
+    * [Wrap Up](#wrap-up)
 <!-- TOC -->
 
 ## MODULE 1
@@ -449,7 +447,52 @@ making commits.
     git commit -m 'it should be os.path.exists'
     ```
 2. Amending commits
+    - update the commit by `--amend` command
+    - `git --amend` is okay for fixing up local commits
+    - Avoid amending commits that have already been made public
+    - but you should not use it on public commits (pushed to public/shared repo)
+    - because as it rewrites, leads to confusion when working with other people
+    - remember, fixing up a local commit with amend is great, and you can push it to a shared repository after you fixed
+      it
+    ```text
+    cd changes/
+    touch auto-update.py
+    touch gather-information.sh
+    ls -l
+    ----
+    git status
+    
+    git add auto-update.py
+    git commit -m 'Add two new scripts'
+    ----
+    git status
+    On branch main
+    Changes not staged for commit:
+      (use "git add <file>..." to update what will be committed)
+      (use "git restore <file>..." to discard changes in working directory)
+            modified:   ../README.md
+    
+    Untracked files:
+      (use "git add <file>..." to include in what will be committed)
+            gather-information.sh
+    
+    no changes added to commit (use "git add" and/or "git commit -a")
+    ----
+    git add gather-information.sh
+    git commit --amend
+    [main 56586c7] Add two files
+    Date: Sat Mar 22 03:03:22 2025 +0530
+    2 files changed, 0 insertions(+), 0 deletions(-)
+    create mode 100644 changes/auto-update.py
+    create mode 100644 changes/gather-information.sh
+    ```
 3. Rollbacks
+```text
+cd changes
+nano all_checks.py
+----
+git commit -a -m 'Add call to disk_full function'
+```
 4. Identifying a commit
 
 ### Branching and Merging
