@@ -1,32 +1,34 @@
 # GitandHub
 
 <!-- TOC -->
+
 * [GitandHub](#gitandhub)
-  * [MODULE 1](#module-1)
-    * [Introduction](#introduction)
-    * [Before Version Control](#before-version-control)
-    * [Version Control Systems](#version-control-systems)
-    * [Using Git](#using-git)
-    * [Glossary](#glossary)
-    * [Qwiklabs Assessment](#qwiklabs-assessment)
-  * [MODULE 2](#module-2)
-    * [Advanced Git Interaction](#advanced-git-interaction)
-    * [Undoing Things](#undoing-things)
-    * [Branching and Merging](#branching-and-merging)
-    * [Qwiklabs Assessment](#qwiklabs-assessment-1)
-  * [MODULE 3](#module-3)
-    * [Introduction to GitHub](#introduction-to-github)
-    * [Using a Remote Repository](#using-a-remote-repository)
-    * [Secure Shells & API Keys](#secure-shells--api-keys)
-    * [Solving Conflicts](#solving-conflicts)
-    * [Qwiklabs Assessment](#qwiklabs-assessment-2)
-  * [MODULE 4](#module-4)
-    * [Pul Requests](#pul-requests)
-    * [Code Reviews](#code-reviews)
-    * [Managing Projects](#managing-projects)
-    * [Qwiklabs Assessment](#qwiklabs-assessment-3)
-    * [Preparing your Resume](#preparing-your-resume)
-    * [Wrap Up](#wrap-up)
+    * [MODULE 1](#module-1)
+        * [Introduction](#introduction)
+        * [Before Version Control](#before-version-control)
+        * [Version Control Systems](#version-control-systems)
+        * [Using Git](#using-git)
+        * [Glossary](#glossary)
+        * [Qwiklabs Assessment](#qwiklabs-assessment)
+    * [MODULE 2](#module-2)
+        * [Advanced Git Interaction](#advanced-git-interaction)
+        * [Undoing Things](#undoing-things)
+        * [Branching and Merging](#branching-and-merging)
+        * [Qwiklabs Assessment](#qwiklabs-assessment-1)
+    * [MODULE 3](#module-3)
+        * [Introduction to GitHub](#introduction-to-github)
+        * [Using a Remote Repository](#using-a-remote-repository)
+        * [Secure Shells & API Keys](#secure-shells--api-keys)
+        * [Solving Conflicts](#solving-conflicts)
+        * [Qwiklabs Assessment](#qwiklabs-assessment-2)
+    * [MODULE 4](#module-4)
+        * [Pul Requests](#pul-requests)
+        * [Code Reviews](#code-reviews)
+        * [Managing Projects](#managing-projects)
+        * [Qwiklabs Assessment](#qwiklabs-assessment-3)
+        * [Preparing your Resume](#preparing-your-resume)
+        * [Wrap Up](#wrap-up)
+
 <!-- TOC -->
 
 ## MODULE 1
@@ -420,17 +422,29 @@ making commits.
      is similar to the Linux `rm` command. This command deletes or 
      removes a file from the working tree.
     ```
+
 ### Undoing Things
 
 1. Undoing Changes Before Committing
+    - If you have made any additional changes to a file after you've staged it, you can restore the file to the earlier
+      stage version.
+    - If you need to check out individual changes instead of whole file, you can do that using the `-p` flag. This will
+      ask you change by change if you want to go back to the previous snapshot or not
     ```text
     git status
+    # revert changes to modified file before they are staged for commit
     git checkout <filename>
     git status
+    ...
     exe_out > output.txt
     git add *
     git status
+    # unstage
+    git restore --staged <filename>
+    # unstage / restore changes in a file after committed to git
     git reset HEAD output.txt
+    Unstaged changes after reset:
+    ...
     git satus
     git commit -m 'it should be os.path.exists'
     ```
