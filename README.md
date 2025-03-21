@@ -211,8 +211,136 @@
     git status
     ```
 4. Anatomy of commit message
+    - Good commit message
+        - helpful to commit audience in mind
+        - specific rules by company
+        - sections
+            - first line, short summary followed by blank line
+            - next, full description of changes (why & how it is important)
+    - `git log` command is used to display these commit messages
+    ```text
+    cat example_commit.txt
+    ...
+    git log
+    commit 5ed482c636ac2d5a79dd33cb559241c4cc8dd288 (HEAD -> main, origin/main)
+    Author: praveen <praveen.goprog@gmail.com>
+    Date:   Fri Mar 21 23:59:46 2025 +0530
+    
+        m1_anatomy-of-commit
+    
+    commit b8fdb22d97e6f3dd05076ef92047297248a04c2c
+    Author: praveen <praveen.goprog@gmail.com>
+    Date:   Fri Mar 21 23:43:31 2025 +0530
+    
+        added content in readme
+    :
+    ```
+    - `5ed482c636ac2d5a79dd33cb559241c4cc8dd288` : commit identifier
+    - `(HEAD -> main)` : Head indicator is point to the master branch
+    - `Author: ......` : show the name and email of the person committed
+    - `Date: ...` : date on which the message was committed
+    - `    m1_.....` : message in the commit
+5. Cheat sheet
+    ```text
+    # Git config command
+    $ git config --global user.email "....."
+    $ git config --global user.name "....."
+    
+    # Git init command
+    $ git init
+    
+    # Git ls -la command
+    $ ls -la
+    $ ls -l .git/
+    
+    # Git add command
+    $ git add <untracked/modified file>
+    
+    # Git status command
+    $ git status
+    
+    # Git commit command
+    $ git commit
+    ```
+
+### Glossary
+
+* Commit: A command to make edits to multiple files and treat that collection of edits as a single change
+* Commit files: A stage where the changes made to files are safely stored in a snapshot in the Git directory
+* Commit message: A summary and description with contextual information on the parts of the code or configuration of the
+* commit change
+* Diff: A command to find the differences between two files
+* DNS zone file: A configuration file that specifies the mappings between IP addresses and host names in your network
+* Git: A free open source version control system available for installation on Unix based platforms, Windows and macOS
+* Git directory: A database for a Git project that stores the changes and the change history
+* Git log: A log that displays commit messages
+* Git staging area: A file maintained by Git that contains all the information about what files and changes are going to
+* go into the next commit
+* Modified files: A stage where changes have been made to a file, but the have not been stored or committed
+* Patch: A command that can detect that there were changes made to the file and will do its best to apply the changes
+* Repository: An organization system of files that contain separate software projects
+* Source Control Management (SCM): A tool similar to VCS to store source code
+* Stage files: A stage where the changes to files are ready to be committed
+* Tracked: A file’s changes are recorded
+* Untracked: A file’s changes are not recorded
+* Version control systems (VCS): A tool to safely test code before releasing it, allow multiple people collaborate on
+  the
+* same coding projects together, and stores the history of that code and configuration
 
 ### Qwiklabs Assessment
+
+In this scenario, you are a project lead in an IT company. You and your team are working on a huge project, which
+consists of multiple functionalities and modules. This project is evolving over time and so your team is expecting a lot
+of code revisions. In this lab, you'll learn how to use a distributed version control system called Git. You'll also
+discover how to connect to a VM instance, install Git, and configure your Git user information. Next, you'll create a
+local Git repository, add a file to the repository, and do some basic operations like adding a file, editing files, and
+making commits.
+
+**What you'll do**
+
+- Create a git repository.
+- Add files to this repository
+- Edit the files
+- Commit the changes to the repository.
+
+```text
+# Install Git
+sudo apt update
+sudo apt install git
+git --version
+...
+# Initialize new repository
+mkdir my-git-repo
+cd my-git-repo
+git init
+...
+# Configure Git
+git config --global user.name '<your name>'
+git config --global user.email '<your email>'
+
+warning: user.name has multiple values
+error: cannot overwrite multiple values with a single value
+       Use a regexp, --add or --replace-all to change user.name.
+...
+# Git Operations
+nano README
+This is my first repository.
+Ctrl+o, Enter and Ctrl+x
+git status
+git add README
+git commit
+This is my firs commit!
+Ctrl+o, Enter and Ctrl+x
+nano README
+A repository is a location where all the files of a particular project are stored.
+Ctrl+o, Enter and Ctrl+x
+git status
+git diff README
+git add README
+git status
+git commit -m "This is my second commit."
+git log
+```
 
 ## MODULE 2
 
