@@ -583,21 +583,234 @@ making commits.
 
 ### Branching and Merging
 
-- What is a branch?
-- Creating New Branches
-- Working with Branches
-- Merging
-- Merge Conflicts
+1. What is a branch?
+    - A pointer to a particular commit
+    - Represents an independent line of development in a project
+    - Default branch when created is called master/main
+    - Master/Main branch is know to be a good state of a project
+    - New branch can be created to add a feature or fix something and develop there
+    - Iterate your code in other branch until it works correctly without affecting the master/main branch
+    - Only after code is ready, we would merge those changes to master/main
+2. Creating New Branches
+    - `git branch` command to list, create, delete and manipulate branches
+    - `git checkout` command to restore a modified file back to latest commit
+    - `git checkout` command to switch to a new branch
+    - `git checkout` is used to check out the latest snapshot for both files and for branches
+    - `git checkout -b` shortcut to create and check out to new branch
+   ```text
+   cd checks/
+   git branch
+   ----
+   git branch new-feature
+   git branch
+   ----
+   git checkout new-feature
+   ----
+   git checkout -b even-better-feature
+   ----
+   git log -2
+   commit d....8e3482fa5.....59f0b96d7d167d363 (HEAD -> even-better-feature)
+   ...
+   commit 6....930db406........a963c8ea17162ce (new-feature, main)
+   ```
+3. Working with Branches
+    - each branch is just a pointer to a specific commit in a series of snapshots
+    - `gi branch -d` command deletes the branch
+   ```text
+   cd checks
+   git status
+   ----
+   ls -l
+   ----
+   git checkout main
+   git log -2
+   ----
+   ls -l
+   ----
+   git branch
+   ----
+   git branch -d new-feature
+   error: The branch 'new-feature' is not fully merged.
+   If you are sure you want to delete it, run 'git branch -D new-feature'.
+   git branch -D even-better-feature
+   ----
+   git branch
+   ----
+   git branch -d even-better-feature
+   ---
+   git branch
+   ```
+4. Merging
+    - Merging is the term git uses for combining branch data and history together
+    - Once new feature in separate branch is in good shape, we merge them into main
+    - `git merge` command takes the independent snapshots and history of one git branch and tangle them into another
+    - git uses two algorithms to perform a merge:
+        - fast-forward merge
+        - three-way merge
+   ```text
+   git branch
+   ----
+   # fast-forward merge
+   git merge even-better-feature
+   Updating ae37c36..d07cbaa
+   Fast-forward
+    all_checks.py   | 1 +
+    free_memeory.py | 7 +++++++
+    2 files changed, 8 insertions(+)
+    create mode 100644 free_memeory.py
+   ----
+   git log
+   commit ......e3482fa5580c82459f0b96d7d167d363 (HEAD -> main, even-better-feature)
+   Author: praveen <...............>
+   Date:   Sat Mar 22 23:50:38 2025 +0530
+   
+       free memory first file
+   
+   commit ......0db4062f328da3122a963c8ea17162ce
+   Author: praveen <...............>
+   Date:   Sat Mar 22 23:41:02 2025 +0530
+   
+       added shabang
+   
+   commit ......b99035d493f05906ce4c8a226ce1eab
+   Author: praveen <...............>
+   Date:   Sat Mar 22 23:38:28 2025 +0530
+   
+       check first commit
+   ----
+   ```
+5. Merge Conflicts
+    - Edits to the same part of the same file causes merge conflicts
+    - Resolve the conflict as show below and add file to commit
+    - `git merge --abort` if you want to throw merge away and start over back to the previous commit before the merge
+      ever happened
+   ```text
+   nano free_memory.py
+   ---- change something and commit
+   git commit -a -m 'Add comment to main()'
+   ----
+   git checkout even-better-feature
+   ----
+   nano free_memeory.py
+   git commit -a -m 'Print everything ok'
+   ----
+   git checkout main
+   ----
+   git merge even-better-feature
+   Auto-merging free_memeory.py
+   CONFLICT (content): Merge conflict in free_memeory.py
+   Automatic merge failed; fix conflicts and then commit the result.
+   ---- CONFLICT
+   git status
+   On branch main
+   You have unmerged paths.
+     (fix conflicts and run "git commit")
+     (use "git merge --abort" to abort the merge)
+   
+   Unmerged paths:
+     (use "git add <file>..." to mark resolution)
+       both modified:   free_memeory.py
+   
+   no changes added to commit (use "git add" and/or "git commit -a")
+   ----
+   nano free_memroy.py
+   # thankfully git has added info to our files which parts of code are conflicting
+   # make changes as required and save and close the file
+   git add free_memory.py
+   git status
+   On branch main
+   All conflicts fixed but you are still merging.
+     (use "git commit" to conclude merge)
+   
+   Changes to be committed:
+       modified:   free_memeory.py
+   ----
+   # editor opens with default commit message created with `git merge` command
+   git commit
+   [main 243694c] Merge branch 'even-better-feature'
+   ----
+   git log --graph --oneline
+   *   243694c (HEAD -> main) Merge branch 'even-better-feature'
+   |\  
+   | * cca1b47 (even-better-feature) Print everything ok
+   * | 4b3dd40 Add comment in main function.
+   |/  
+   * d07cbaa free memory first file
+   * 61fe639 added shabang
+   * ae37c36 check first commit
+   ----
+   ```
+6. Cheat sheet
+   ```text
+   $ git branch
+    can be used to list, create, or delete branches.
+   
+   $ git branch <name>
+    can be used to create a new branch in your repository. 
+   
+   $ git branch -d <name>
+    can be used to delete a branch from your repository.
+   
+   $ git branch -D <branch>
+    forces a branch to be deleted.
+   
+   $ git checkout <branch>
+    switches your current working branch.
+   
+   $ git checkout -b <new-branch>
+    creates a new branch and makes it your current working branch. 
+   
+   $ git merge <branch>
+    joins changes from one branch into another branch.
+   
+   $ git merge --abort
+    can only be used after merge conflicts. This command will abort the merge and try to go back to the pre-merge state.
+   
+   $ git log --graph 
+   prints an ASCII graph of the commit and merge history.
+   
+   $ git log --oneline
+    prints each commit on a single line.
+   ```
+
+### Glossary
+
+**Terms and definitions from Course 3, Module 2**
+
+- **Branch**: A pointer to a particular commit, representing an independent line of development in a project
+- **Commit** ID: An identifier next to the word commit in the log
+- **Fast**-forward merge: A merge when all the commits in the checked out branch are also in the branch that's being
+  merged
+- **Head**: This points to the top of the branch that is being used
+- **Master**: The default branch that Git creates for when a new repository initialized, commonly used to place the
+  approved pieces of a project
+- **Merge** conflict: This occurs when the changes are made on the same part of the same file, and Git won't know how to
+  merge those changes
+- **Rollback**: The act of reverting changes made to software to a previous state
+- **Three-way merge**: A merge when the snapshots at the two branch tips with the most recent common ancestor, the
+  commit before the divergence
 
 ### Qwiklabs Assessment
+
+In this lab, you'll use your knowledge of Git and Git commit history to check out an existing repo and make some changes
+to it. You'll also test what you learned about rolling back commits after bad changes in order to fix a script in the
+repo and run it to produce the correct output.
+
+**What you'll do**
+
+1. Check the status and history of an existing Git repo
+2. Create a branch
+3. Modify content on the branch
+4. Make rollback changes
+5. Merge the branch
 
 ## MODULE 3
 
 ### Introduction to GitHub
 
-- Working with Remotes
-- What is GitHub?
-- Basic Interaction with GitHub
+1. Working with Remotes
+2. What is GitHub?
+3. Basic Interaction with GitHub
 
 ### Using a Remote Repository
 
