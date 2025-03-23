@@ -809,15 +809,81 @@ repo and run it to produce the correct output.
 ### Introduction to GitHub
 
 1. Working with Remotes
+    - Git is a distributed version control system
+    - Distributed : each developer has a copy of the whole repository on their local machine
 2. What is GitHub?
+    - GitHub : 
+    - a web base git repository hosting service
+    - is an online service for Git server hosting repositories
+    - includes extra features like
+        - bug tracking
+        - wikis
+        - task management
+    - share and access repositories on the web and copy or clone them to our local computer
+    - Other services like GitHub are
+        - BitBucket
+        - GitLab
+    - For real configuration and development work, you should use a secure and private Git server, and limit the people
+      authorized to work on it
 3. Basic Interaction with GitHub
+   ```text
+   git clone <git-http-git-code>
+   ----
+   # make some changes
+   git commit -a -m 'Add one or more lines to README'
+   ----
+   git push
+   ----
+   git config --global credential.helper cache
+   ----
+   git pull
+   ----
+   git pull
+   ```
 
 ### Using a Remote Repository
 
-- What is a Remote?
-- Working with Remotes
-- Fetching New Changes
-- Updating the Local Repository
+1. What is a Remote?
+   ```text
+   git clone <http-code-git>
+   ```
+2. Working with Remotes
+   ```text
+   cd health-checks/
+   git remote -v
+      origin  https://github.com/pk80/GitandHub.git (fetch)
+      origin  https://github.com/pk80/GitandHub.git (push)
+   ----
+   git remote show origin
+      * remote origin
+        Fetch URL: https://github.com/pk80/GitandHub.git
+        Push  URL: https://github.com/pk80/GitandHub.git
+        HEAD branch: main
+        Remote branch:
+          main tracked
+        Local ref configured for 'git push':
+          main pushes to main (up to date)
+   ----
+   git branch -r
+     origin/main
+   ----
+   ```
+3. Fetching New Changes
+```text
+git remote show origin
+----
+git fetch
+----
+git log origin/main
+----
+git status
+----
+git merge origin/main
+----
+git log
+----
+```
+4. Updating the Local Repository
 
 ### Secure Shells & API Keys
 
