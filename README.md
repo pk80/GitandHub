@@ -812,7 +812,7 @@ repo and run it to produce the correct output.
     - Git is a distributed version control system
     - Distributed : each developer has a copy of the whole repository on their local machine
 2. What is GitHub?
-    - GitHub : 
+    - GitHub :
     - a web base git repository hosting service
     - is an online service for Git server hosting repositories
     - includes extra features like
@@ -869,68 +869,376 @@ repo and run it to produce the correct output.
    ----
    ```
 3. Fetching New Changes
-```text
-git remote show origin
-----
-git fetch
-----
-git log origin/main
-----
-git status
-----
-git merge origin/main
-----
-git log
-----
-```
+   ```text
+   git remote show origin
+   ----
+   git fetch
+   ----
+   git log origin/main
+   git status
+   ----
+   git merge origin/main
+   ----
+   git log
+   ----
+   ```
 4. Updating the Local Repository
+   ```text
+   git pull
+   ----
+   git log -p -1
+   ----
+   git remote show origin
+   ----
+   git checkout <branch_name>
+   ----
+   ```
+5. Git remotes
+    - **git remote** : allows you to manage the set of repositories or “remotes” whose branches you track.
+    - **git remote -v** : is similar to `git remote`, but adding the `-v` shows more information such as the remote
+      URL.\
+    - **git remote show <name>** : shows some information about a single remote repo.
+    - **git remote update** : fetches updates for remotes or remote groups.
+    - **git fetch** : can download objects and refs from a single repo, a single URL, or from several repositories at
+      once.
+    - **git branch -r** : lists remote branches and can be combined with other branch arguments to manage remote
+      branches.
 
 ### Secure Shells & API Keys
 
-- What is a Secure Shell?
-- The SSH protocol
-- Configuring SSH
-- API Keys
-- When to use API Keys
-- Public vs Private Keys
+1. What is a Secure Shell?
+    - Secure shell (SSH) is a robust protocol for connecting to servers remotely
+    - SSH secures data in interactive terminal sessions or file transfers. This encryption ensures that sensitive
+      information remains confidential during communication.
+    - SSH adheres to the principle of the least privilege, restricting users to specific hosts, enhancing security
+    - Alternate ot SSH :
+        - Telnet (exposes your typed commands, including passwords, to anyone on the network equipped with the right
+          tools)
+        - TLS (encrypts data within web browsers)
+        - VPN (encryption but grant access to entire networks after connection)
+        - VNS or GoToMyPc (focus on graphical user interfaces and desktop experiences)
+    - Operation :
+        - the SSH server
+            - residing on the target server, establishes secure network connections, undergoes mutual authentication,
+              and initiates encrypted login sessions or file transfers
+        - the SSH client
+            - establishes a connection to the SSH server, ensuring a secure interaction. The client makes requests, such
+              as “log me in” or “copy this file.”
+    - SSH Keys :
+        - In the SSH protocol, an access credential is SSH Key
+        - serves a similar purpose as usernames and passwords, although system administrators and power users typically
+          use the keys to automate procedures and achieve single sign-on.
+        - Displaying the fingerprint of an SSH key is a useful way to verify that you're using the correct key and that
+          the remote server's key hasn't been tampered with.
+        - To display the fingerprint of an SSH key, you can use the ssh-keygen command-line tool.
+2. The SSH protocol
+    - the word “shell” refers to a program that provides an interface for accessing another operating system
+    - The Secure Shell network protocol, usually shorthanded to “SSH,” allows secure access to a computer over an
+      unsecured network
+    - What is a protocol ?
+        - A protocol is a set of rules for how two things should communicate with each other.
+        - these are usually published as open standards so that any given protocol can be implemented in various
+          products
+    - SSH Protocol :
+        - SSH works on the principle of public-key encryption
+        - The client and the server each generate a strong encryption key for any data that is passed between them.
+          Then, that key gets split in half, with the client retaining one portion and the server keeping the other.
+        - In SSH, the keys are split between a public key, the public half of the server’s encryption key, and the
+          private key, which is stored only on the server.
+        - This way, a user’s machine can encrypt a message using the public key, but only the connected server can
+          decode it because only the server’s private key will successfully decrypt the message.
+        - Using SSH, your keystrokes and the server’s responses are completely secure.
+    - Using the SSH protocol
+        - The SSH protocol is commonly used for logging in to servers remotely.
+        - Used to encrypt file transfers and to log in to some network equipment, like routers.
+        - Your private key is unique to you, it can serve as both authentication and encryption, so the server doesn’t
+          need to ask you for a password.
+        - Other uses :
+            - Transferring files between client and server with SCP (Secure Copy Protocol) or SFTP (Secure File Transfer
+              Protocol)
+            - Forwarding network ports from server to client, or “tunneling”
+            - Relaying your login to yet another server behind a firewall, sometimes referred to as a “jump box” or
+              “bastion
+              host”
+            - Running graphical user interface (GUI) applications on a server but displaying them on a local client
+3. Configuring SSH
+    - When using Secure Shell (SSH), the client connects to the server on port 22
+    - SSH configuration instructions will be different depending on your operating system and the implementation of SSH
+    - But instructions for a client to generate its SSH key and connect to a server are more general
+    - If you add a passphrase to your SSH key for added security, you can save the passphrase to an SSH agent, which is
+      a program that manages SSH keys.
+    - SSH will also ask you for a passphrase to protect your key. Many people choose not to use a passphrase because if
+      you enter a passphrase here, you will be required to enter it every time your key is used. If you are on a machine
+      that is not secure, however, someone who gains access to that computer will also have access to every system that
+      uses that key.
+    - After you have set your passphrase or declined the option, OpenSSH will then generate a random public/private key
+      pair and save it. Depending on your hardware, this may take several seconds to complete. OpenSSH will then return
+      a message that your key has been saved and display the fingerprint and a “randomart image” of your new key
+   ```text
+   # Generating your key pair
+   # it will create a hidden directory called .ssh in your home directory b default
+   # SSH will also ask you for a passphrase to protect your key
+   ssh-keygen -t rsa -b 2048
+   
+   # Now that you have a key pair, you can connect to a host. The most basic form of the command to connect is
+   ssh <username>@<hostname>
+   ```
+4. API Keys
+    - An Application Programming Interface (API) key is an authentication token that allows you to call an API
+    - It is frequently accompanied by a set of access rights that are specific to the API the key is linked to
+    - The API key is usually randomly generated by the application and must be sent on every API call.
+    - It serves as a distinctive identifier and offers a secure token for authentication.
+    - Authentication and authorization :
+        - authentication : making sure you’re who you say you are
+            - When you are authenticating with API keys, you are ensuring that malicious users or applications can’t
+              call an
+              API and make unauthorized or authorized changes.
+        - authorization : deciding which APIs you are allowed to call
+            - When you are authorizing with API keys, you are also ensuring that you have the correct API call.
+              Authorization will also check that the API key being used in the project is available.
+    - How they are used :
+        - As an HTTP parameter in the request URL : `GET https://myapp.com/api/users/list?apikey=12345678`
+        - As an HTTP header sent with the request : `GET https://myapp.com/api/users/listX-API-Key: 12345678`
+        - Posted to a specific authorization endpoint, which returns another token or a cookie to be sent with
+          subsequent requests (rarely) : `POST https://myapp.com/api/auth{ “token”: “12345678” }`
+    - Do not hardcode API keys into your application code, especially if it will be posted in a public repository
+      like GitHub
+    - Unfortunately, it happens every day. For this reason, many applications are moving away from API keys and toward
+      OAuth, which requires the user to manually authorize an application before using it. With being extra cautious,
+      you can make sure this does not happen to you
+5. When to use API Keys
+    - Managing access and safeguarding resources is where API keys come into play
+    - Reasons why you might want to use API keys
+        - To block anonymous traffic (protect your API from abuse and to ensure access to only authorized users)
+        - To control the number of calls made to your API (to prevent your API from being overloaded and to ensure that
+          it is available to all authorized users)
+        - To identify usage patterns (to improve your API and to make sure that it is meeting the needs of your users)
+        - To filter logs by API key (to troubleshoot problems with your API and to identify which users are using your
+          API the most)
+    - Reasons why you can not use API keys
+        - Identifying individual users (API keys do not identify individual users; they identify entire projects)
+        - Secure authorization (They should be used only to identify and control access to an API)
+        - Identifying the creators of a project (Service Infrastructure doesn't provide a method to directly look up
+          projects from API keys)
+    - API keys serve as the link between the potential of APIs and the demand for restricted usage.
+6. Public vs Private Keys
+    - Asymmetric cryptography relies on public and private keys as its core building blocks to maintain data security
+      and confidentiality in the face of dangers
+    - What is a public key?
+        - A public key is frequently employed to establish secure communication through data encryption or to validate
+          the authenticity of a digital signature.
+        - Safety is ensured because the public key comes from a trusted certificate authority, which gives digital
+          certificates verifying the owner’s identity and key.
+    - What is a private key?
+        - A private key is a secret and secure key that must be kept confidential and protected.
+        - Its role involves decryption and the creation of digital signatures, assuring the data's integrity and
+          authenticity.
+        - It is the counterpart of the public key and is shared to decrypt encoded information.
+        - Any data encrypted using the private key can be decrypted using the corresponding public key.
+    - How do public and private keys work together?
+        - Public and private keys work together to ensure secure communication, data encryption, digital signatures, and
+          key exchanges take place safely across various communication channels. This process encompasses
+            - Key generation: A public and private key is generated for both the sender and receiver.
+            - Key exchange: The public keys are exchanged between sender and receiver.
+            - Encryption: The sender encrypts their data using the recipient's public key.
+            - Transmitting encrypted data: The encrypted data is transmitted to the recipient.
+            - Decryption: The recipient decrypts the message using their exclusive private key.
 
 ### Solving Conflicts
 
-- The Pull-Merge-Push Workflow
-- Pushing Remote Branches
-- Rebasing Your Changes
-- Another Rebasing Example
-- Best Practices for Collaboration
-- Conflict Resolution
+1. The Pull-Merge-Push Workflow
+    ```text
+    git add -p
+    ----
+    git commit -m '.....'
+    ----
+    git push
+    ---- Rejected
+    git pull
+    ----
+    git log --graph --oneline --all
+    ----
+    git log -p origin/master
+    ---- make changes and fix the conflict here
+    git add <filename> 
+    git commit
+    ---- provide extra information
+    git push
+    ----
+    git log --graph --oneline
+    ----
+    ```
+2. Pushing Remote Branches
+    ```text
+    git checkout -b <new_branch_name>
+    ---- do some changes to one file
+    ./runfile
+    ---- if everything is ok
+    git commit -a -m '...........'
+    ---- again do some changes
+    git commit -a -m '...........'
+    ---- repeat couple of times like this
+    git push -u origin <new_branch_name> 
+    ----
+    ```
+3. Rebasing Your Changes
+    - Rebase - changing the base commit that's used for the branch
+    ```text
+    git checkout main
+    ----
+    git pull
+    ----
+    git log --graph --oneline --all
+    ----
+    git checkout <branch_name>
+    ----
+    git rebase main
+    ---- This will move <branch_name> on top of main branch
+    git log --graph --oneline
+    ----
+    git checkout main
+    ----
+    git merge <branch_name>
+    ----
+    git push --delete origin <branch_name>
+    ----
+    git branch -d <branch_name>
+    ----
+    git push
+    ----
+    ```
+4. Another Rebasing Example
+    ```text
+    ---- first do some changes to the file
+    git commit -a -m '....................'
+    ----
+    git fetch
+    ----
+    git rebase origin/main
+    ---- conflicts
+    git add <file>
+    git rebase --continue
+    ----
+    git log --graph --online
+    ----
+    git push
+    ----
+    ```
+5. Best Practices for Collaboration
+    - Always synchronize your branch before starting any work on your own
+    - Avoid having very large changes that modify a lot of different things
+    - When working on a big change, it makes sense to have a separate feature branch
+    - Regularly merge changes made on the master branch back onto the feature branch
+    - To maintain more than one version of a project at the same time, have the latest version of the project in the
+      master branch, and the stable version of the project on a separate branch
+    - Be very careful with the rebase, as it changes the history of the project. You shouldn't rebase changes that have
+      been pushed to remote repos
+    - Having good commit messages is important
+6. Conflict Resolution
+    - After running Git merge, a message will appear informing that a conflict occurred on the file.
+    - Read the error messages that imply you cannot push your local changes to GitHub, especially the remote changes
+      with
+      Git pull.
+    - Use the command line or GitHub Desktop to push the change to your branch on GitHub after you make a local clone of
+      the
+      repository for all other types of merge conflicts.
+    - Before merging any commits to the master branch, push it into a remote repository so that collaborators can view
+      the
+      code, test it, and inform you that it’s ready for merging.
+    - Use the Git rebase command to replay the new commits on top of the new base and then merge the feature branch back
+      into the master.
+
+### Glossary
+
+**Terms and definitions from Course 3, Module 3**
+
+- Application Programming Interface (API) key: This is an authentication token that calls an API, which is then called
+  to identify the person, programmer, or program trying to access a website
+- Computer protocols: Guidelines published as open standards so that any given protocol can be implemented in
+  various
+  products
+- Distributed: Each developer has a copy of the whole repository on their local machine
+- GitHub: A web-based Git repository hosting service, allowing users to share and access repositories on the web and
+  copy or clone them to a local computer
+- Merge: An operation that merges the origin/master branch into a local master branch
+- Private key: A secret and secure cryptographic key that must be kept confidential and protected and is used to
+  decrypt
+  data that has been encrypted with the corresponding public key
+- Public key: A safety cryptographic structure frequently employed to establish secure communication through data
+  encryption or to validate the authenticity of a digital signature
+- Rebasing: The base commit that's used for a branch is changed
+- Remote branches: Git uses read-only branches to keep copies of the data that's stored in the remote repository
+- Remote repositories: Repositories that allow developers to contribute to a project from their own workstations
+  making
+  changes to local copies of the project independently of one another
+- Secure Shell (SSH): A robust protocol for connecting to servers remotely
+- SSH client: This establishes a connection to the SSH server, ensuring a secure interaction, where the client makes
+  access requests
+- SSH key: An access credential
+- SSH protocol: Standard commonly used for logging in to servers remotely on the principle of public-key encryption
+  SSH server: This establishes secure network connections, undergoes mutual authentication, and initiates encrypted
+  login sessions or file transfers
 
 ### Qwiklabs Assessment
+
+In this lab, you'll practice the basics of interacting with GitHub. You'll practice setting up an account, logging in,
+creating a repository, making changes on the local machine, and pushing changes back to the remote repository. We use
+these git operations to share changes from the remote repository to the local repository and vice-versa.
+
+**What you'll do**
+
+1. Create a GitHub account
+2. Create a git repository
+3. Git clone to create a local copy on your local machine
+4. Add a file to this repository
+5. Create snapshot/snapshots of the local repository
+6. Push the snapshots to the master branch
 
 ## MODULE 4
 
 ### Pul Requests
 
-- Collaboration
-- A Simple Pull Request on GitHub
-- The Typical Pull Request Workflow on GitHub
-- Updating an Existing Pull Request
-- Squashing Changes
-- Git Forks and Pull Requests
+1. Collaboration
+2. A Simple Pull Request on GitHub
+    - Fork : A way of creating a copy of the given repository so that it belongs to our user
+    - Pull Request : A commit or series of commits that you send to the owner of the repository so that they incorporate
+      it into their tree
+3. The Typical Pull Request Workflow on GitHub
+   ```text
+   git clone https://github.com/<user>/<repo>.git
+   ----
+   cd <repo>
+   ls -l
+   ----
+   git log
+   ----
+   git checkout -b add-readme
+   ---- access file and make some changes
+   git add file
+   git commit -m '............'
+   ----
+   git push -u origin add-readme
+   ----
+   ```
+4. Updating an Existing Pull Request
+5. Squashing Changes
+6. Git Forks and Pull Requests
 
 ### Code Reviews
 
-- What are Code Reviews?
-- The Code Review Workflow
-- How to use Code Reviews in GitHub
-- More Information on Code Reviews
+1. What are Code Reviews?
+2. The Code Review Workflow
+3. How to use Code Reviews in GitHub
+4. More Information on Code Reviews
 
 ### Managing Projects
 
-- Managing Collaboration
-- Tracking Issues
-- Continuous Integration
-- Integration git and GitHub
-- GitHub Project Management Tools
-- Additional Tools
+1. Managing Collaboration
+2. Tracking Issues
+3. Continuous Integration
+4. Integration git and GitHub
+5. GitHub Project Management Tools
+6. Additional Tools
 
 ### Qwiklabs Assessment
 
