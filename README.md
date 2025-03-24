@@ -1,34 +1,34 @@
 # GitandHub
 
 <!-- TOC -->
-
 * [GitandHub](#gitandhub)
-    * [MODULE 1](#module-1)
-        * [Introduction](#introduction)
-        * [Before Version Control](#before-version-control)
-        * [Version Control Systems](#version-control-systems)
-        * [Using Git](#using-git)
-        * [Glossary](#glossary)
-        * [Qwiklabs Assessment](#qwiklabs-assessment)
-    * [MODULE 2](#module-2)
-        * [Advanced Git Interaction](#advanced-git-interaction)
-        * [Undoing Things](#undoing-things)
-        * [Branching and Merging](#branching-and-merging)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-1)
-    * [MODULE 3](#module-3)
-        * [Introduction to GitHub](#introduction-to-github)
-        * [Using a Remote Repository](#using-a-remote-repository)
-        * [Secure Shells & API Keys](#secure-shells--api-keys)
-        * [Solving Conflicts](#solving-conflicts)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-2)
-    * [MODULE 4](#module-4)
-        * [Pul Requests](#pul-requests)
-        * [Code Reviews](#code-reviews)
-        * [Managing Projects](#managing-projects)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-3)
-        * [Preparing your Resume](#preparing-your-resume)
-        * [Wrap Up](#wrap-up)
-
+  * [MODULE 1](#module-1)
+    * [Introduction](#introduction)
+    * [Before Version Control](#before-version-control)
+    * [Version Control Systems](#version-control-systems)
+    * [Using Git](#using-git)
+    * [Glossary](#glossary)
+    * [Qwiklabs Assessment](#qwiklabs-assessment)
+  * [MODULE 2](#module-2)
+    * [Advanced Git Interaction](#advanced-git-interaction)
+    * [Undoing Things](#undoing-things)
+    * [Branching and Merging](#branching-and-merging)
+    * [Glossary](#glossary-1)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-1)
+  * [MODULE 3](#module-3)
+    * [Introduction to GitHub](#introduction-to-github)
+    * [Using a Remote Repository](#using-a-remote-repository)
+    * [Secure Shells & API Keys](#secure-shells--api-keys)
+    * [Solving Conflicts](#solving-conflicts)
+    * [Glossary](#glossary-2)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-2)
+  * [MODULE 4](#module-4)
+    * [Pul Requests](#pul-requests)
+    * [Code Reviews](#code-reviews)
+    * [Managing Projects](#managing-projects)
+    * [Qwiklabs Assessment](#qwiklabs-assessment-3)
+    * [Preparing your Resume](#preparing-your-resume)
+    * [Wrap Up](#wrap-up)
 <!-- TOC -->
 
 ## MODULE 1
@@ -1214,26 +1214,128 @@ these git operations to share changes from the remote repository to the local re
    ----
    git checkout -b add-readme
    ---- access file and make some changes
-   git add file
+   git add <filename>
    git commit -m '............'
    ----
    git push -u origin add-readme
    ----
    ```
+    - create pull request in gui of the GitHub
+    - Always double check before creating a pull request that you are sending the right file
 4. Updating an Existing Pull Request
+    - if asked for any documentation update
+    ```text
+    nano <filename>
+    ---- make some changes
+    git commit -a -m 'added more information to the file'
+    ----
+    git push 
+    ----
+    ```
+    - if we want to create new pull request, we need to create a new branch
 5. Squashing Changes
+    - As we know we shouldn't rewrite history when commits have been published, this is waved with pull requests, since
+      it's only you who have cloned the repo.
+    - using `squash` command to combine both commits gives another file to edit
+    ```text
+    # interactive command of rebase
+    git rebase -i main
+    ---- use squash in the edit
+    # to see the latest commit and changes init
+    git show
+    ----
+    # to see info about the current state
+    git status
+    ----
+    git log --graph --oneline --all -4
+    ----
+    # replace old commits with new commits
+    # use -f force push
+    git push -f
+    ----
+    git log --graph --oneline --all -4
+    ----
+    ```
+    - see the contents of the pull request in github
 6. Git Forks and Pull Requests
+    - Pull Requests
+        - Pull requests allow you to inform fellow contributors about changes that have been made to a branch in Git
+            - Make changes to the file
+            - Change the proposal and complete a description of the change
+            - Click the Proposed File Change button to create a commit in the forked repo to send the change to the
+              owner
+            - Enter comments about the change
+            - Click Create Pull Request
+        - When creating multiple commits, a number next to the pull request serves as the identifier for accessing the
+          pull requests in the future
+    - Pull request merges
+        - merge commits (all commits of feature branch to base(main) branch using `--no-ff` option)
+        - squash and merge commits (multiple commits combined into single commit using `-ff` option)
+        - merge message for a squash merge
+        - rebase and merge commits
+        - indirect merges
 
 ### Code Reviews
 
 1. What are Code Reviews?
+    - Going through someone else's code, documentation, or configuration and checking that it all makes sens and follows
+      the expected patterns
+    - The goal is to improve the project by making sure that changes are high quality.
+    - They increase the number of eyes on code, increasing code quality and reduces amount of bugs
+    - Coder V tool (used when the other person in at different location/zone) let us comment on someone else's code
+    - Common code issues
+        - unclear names
+        - forgetting to add a test
+        - forgetting to handle a specific condition
+    - Code reviews are for making code better
 2. The Code Review Workflow
+    - After making changes to code, we'll ask the reviewer to check the code.
+    - Reviewers will find something that needs improving, so they'll add comments that needs to be fixed and how.
+    - When we get those comments, we'll address them by fixing
+    - Then we mark it as resolved so that we know it's been taken care of. If not sure how to fix reply to the comment
+      and ask for more information without making comment as resolved.
+    - Once all comments are resolved and reviewer is satisfied, then they'll approve the change, and we'll be able to
+      merge it.
+    - Lot of python projects follow PEP8 coding style guide
 3. How to use Code Reviews in GitHub
+    ```text
+    ---- do some changes to fix the reviewer comments then add and amend to previous commit
+    git commit -a --amend
+    ---- edit the original commit
+    git status
+    ----
+    # forcing pushes is fine for PR branches as nobody else should have cloned it
+    git push -f
+    ----
+    ```
 4. More Information on Code Reviews
+    - Common code review strategies
+        - Pair programming
+        - The email thread
+        - Over the shoulder
+        - Tool assisted
+    - Pull request reviews
+        - tips
+            - be selective with reviewers
+            - timely reviews
+            - constructive feedback
+            - detailed pull request description
+            - interactive rebasing
 
 ### Managing Projects
 
 1. Managing Collaboration
+    - Clear documentation
+    - If you're a project maintainer, it's important that you reply promptly to pull requests and don't let them
+      stagnate.
+    - It's important that you understand any changes you accept.
+    - When it comes to coordinating who does what and when, a common strategy for active software projects is to use an
+      `issue tracker`.
+    - way of communication
+      - mailing list
+      - IRC channels
+      - **Slack channels**
+      - Telegram groups
 2. Tracking Issues
 3. Continuous Integration
 4. Integration git and GitHub
