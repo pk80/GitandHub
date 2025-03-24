@@ -1,34 +1,36 @@
 # GitandHub
 
 <!-- TOC -->
+
 * [GitandHub](#gitandhub)
-  * [MODULE 1](#module-1)
-    * [Introduction](#introduction)
-    * [Before Version Control](#before-version-control)
-    * [Version Control Systems](#version-control-systems)
-    * [Using Git](#using-git)
-    * [Glossary](#glossary)
-    * [Qwiklabs Assessment](#qwiklabs-assessment)
-  * [MODULE 2](#module-2)
-    * [Advanced Git Interaction](#advanced-git-interaction)
-    * [Undoing Things](#undoing-things)
-    * [Branching and Merging](#branching-and-merging)
-    * [Glossary](#glossary-1)
-    * [Qwiklabs Assessment](#qwiklabs-assessment-1)
-  * [MODULE 3](#module-3)
-    * [Introduction to GitHub](#introduction-to-github)
-    * [Using a Remote Repository](#using-a-remote-repository)
-    * [Secure Shells & API Keys](#secure-shells--api-keys)
-    * [Solving Conflicts](#solving-conflicts)
-    * [Glossary](#glossary-2)
-    * [Qwiklabs Assessment](#qwiklabs-assessment-2)
-  * [MODULE 4](#module-4)
-    * [Pul Requests](#pul-requests)
-    * [Code Reviews](#code-reviews)
-    * [Managing Projects](#managing-projects)
-    * [Qwiklabs Assessment](#qwiklabs-assessment-3)
-    * [Preparing your Resume](#preparing-your-resume)
-    * [Wrap Up](#wrap-up)
+    * [MODULE 1](#module-1)
+        * [Introduction](#introduction)
+        * [Before Version Control](#before-version-control)
+        * [Version Control Systems](#version-control-systems)
+        * [Using Git](#using-git)
+        * [Glossary](#glossary)
+        * [Qwiklabs Assessment](#qwiklabs-assessment)
+    * [MODULE 2](#module-2)
+        * [Advanced Git Interaction](#advanced-git-interaction)
+        * [Undoing Things](#undoing-things)
+        * [Branching and Merging](#branching-and-merging)
+        * [Glossary](#glossary-1)
+        * [Qwiklabs Assessment](#qwiklabs-assessment-1)
+    * [MODULE 3](#module-3)
+        * [Introduction to GitHub](#introduction-to-GitHub)
+        * [Using a Remote Repository](#using-a-remote-repository)
+        * [Secure Shells & API Keys](#secure-shells--api-keys)
+        * [Solving Conflicts](#solving-conflicts)
+        * [Glossary](#glossary-2)
+        * [Qwiklabs Assessment](#qwiklabs-assessment-2)
+    * [MODULE 4](#module-4)
+        * [Pul Requests](#pul-requests)
+        * [Code Reviews](#code-reviews)
+        * [Managing Projects](#managing-projects)
+        * [Qwiklabs Assessment](#qwiklabs-assessment-3)
+        * [Preparing your Resume](#preparing-your-resume)
+        * [Wrap Up](#wrap-up)
+
 <!-- TOC -->
 
 ## MODULE 1
@@ -578,7 +580,7 @@ making commits.
     - Serving as an identifier for the file itself (a token or fingerprint).
     
     Git calculates a hash for every commit. Those hashes are displayed by commands like git log or in various pages
-    on Github. For commands like git revert, you can then use the hash to refer to a specific commit.
+    on GitHub. For commands like git revert, you can then use the hash to refer to a specific commit.
     ```
 
 ### Branching and Merging
@@ -851,13 +853,13 @@ repo and run it to produce the correct output.
    ```text
    cd health-checks/
    git remote -v
-      origin  https://github.com/pk80/GitandHub.git (fetch)
-      origin  https://github.com/pk80/GitandHub.git (push)
+      origin  https://GitHub.com/pk80/GitandHub.git (fetch)
+      origin  https://GitHub.com/pk80/GitandHub.git (push)
    ----
    git remote show origin
       * remote origin
-        Fetch URL: https://github.com/pk80/GitandHub.git
-        Push  URL: https://github.com/pk80/GitandHub.git
+        Fetch URL: https://GitHub.com/pk80/GitandHub.git
+        Push  URL: https://GitHub.com/pk80/GitandHub.git
         HEAD branch: main
         Remote branch:
           main tracked
@@ -1205,7 +1207,7 @@ these git operations to share changes from the remote repository to the local re
       it into their tree
 3. The Typical Pull Request Workflow on GitHub
    ```text
-   git clone https://github.com/<user>/<repo>.git
+   git clone https://GitHub.com/<user>/<repo>.git
    ----
    cd <repo>
    ls -l
@@ -1256,7 +1258,7 @@ these git operations to share changes from the remote repository to the local re
     git log --graph --oneline --all -4
     ----
     ```
-    - see the contents of the pull request in github
+    - see the contents of the pull request in GitHub
 6. Git Forks and Pull Requests
     - Pull Requests
         - Pull requests allow you to inform fellow contributors about changes that have been made to a branch in Git
@@ -1332,17 +1334,263 @@ these git operations to share changes from the remote repository to the local re
     - When it comes to coordinating who does what and when, a common strategy for active software projects is to use an
       `issue tracker`.
     - way of communication
-      - mailing list
-      - IRC channels
-      - **Slack channels**
-      - Telegram groups
+        - mailing list
+        - IRC channels
+        - **Slack channels**
+        - Telegram groups
 2. Tracking Issues
-3. Continuous Integration
+    - Inbuilt in GitHub
+3. Continuous Integration (CI/CD : continuous integration / continuous deployment(delivery))
 4. Integration git and GitHub
+    - If you don’t want to enter your username and password every time, you can store them in a file called .netrc in
+      your home directory
+    ```text
+    machine GitHub.com
+        login my-username
+        password my-password
+    
+    machin api.GitHub.com
+        login my-username
+        password my-password
+    ```
+    - Command-line HTTPS with token
+        - Instead of storing your password in plaintext in the .netrc file, you can generate a personal access token and
+          use that in place of your password
+    - Git Credential Manager (GCM)
+        - A tool that securely stores your passwords and supplies them to Git without your intervention
+    - SSH Authentication
+        - To add your SSH key for use with GitHub
+            - Find the public key you generated in the previous module (id_rsa.pub)
+            - Open GitHub.com, Settings -> SSH & GPG Keys -> New SSH Key -> paste public key content
 5. GitHub Project Management Tools
+    - GitHub Projects
+        - Projects can be created in a repository, and then issues can be added to them
+        - create an adaptable spreadsheet, task-board, and road map which integrates with your issues and pull requests
+        - can filter, sort, and group your issues and pull requests and customize to fit your team’s workflow
+    - GitHub Issues
+        - track tasks that you need to complete
+        - an issue can be a bug, a feature request, or a housekeeping task (like upgrading a library to the latest
+          version)
+        - Issues can have extensive text and descriptions attached to them, including screenshots and snippets of code.
+        - Issues can be discussed, commented on, assigned to people, and tagged
+    - Traditional project management
 6. Additional Tools
 
+### Glossary
+
+**Terms and definitions from Course 3, Module 4**
+
+- **CI/CD**: The name for the entire continuous integration and continuous deployment system
+- **Code reviews**: The deliberate and methodical gathering of other programmers to examine each other's code for errors
+  to
+  increase the code quality and reduces the amount of bugs
+- **Continuous deployment (CD)**: New code is deployed often after it has been automatically built and tested
+- **Continuous integration (CI)**: A system that will automatically build and test our code every time there's a change
+- **Fix up**: The decision to discard commit messages for that commit
+- **Forking**: A way of creating a copy of the given repository so that it belongs to our user
+- **Indirect merges**: GitHub can merge a pull request automatically if the head branch is directly or indirectly merged
+  into the base branch externally
+- **Issue tracker (bug tracker)**: A tracker that shows tasks that need to be done, the state they're in and who's
+  working
+  on them
+- **Merge commits**: All commits from the feature branch are added to the base branch
+- **Pipelines**: The specific steps that need to run to obtain the desired result
+- **Pull request**: A procedure where new code is examined before it is merged to create a branch or master branch
+- **Squash commits**: The decision add commit messages together and an editor opens to make any necessary changes
+
 ### Qwiklabs Assessment
+
+For this project, you'll need to fork an existing repository, fix a bug in a script, push your commit to GitHub, and
+create a pull request with your commit.
+
+**What you'll do**
+
+1. Fork another repository
+2. Commit changes to your own fork and create pull requests to the upstream repository
+3. Gain familiarity with code reviews, and ensure that your fix runs fine on your system before creating the pull
+   request
+4. Describe your pull request
+
+### IT Skills in action
+
+- Implement version control using git and GitHub
+- Branch and merge your work
+- Secure and restore repositories
+- Resolve code conflicts
+- Run code reviews and manage pull requests
+- Use versioning to track and manage projects
+
+**The project**
+
+Imagine you're part of an IT team responsible for developing and managing a software project. Your team is using Git
+for version control, collaborating on coding tasks, and ensuring project success. Let's walk through the process step
+by step.
+
+**Project steps**
+
+Before Version Control:  
+Before diving into code, ensure your team is aligned on the project's scope, goals, and
+responsibilities.
+
+Version control systems:  
+Choose GitHub as your version control system to track changes, collaborate effectively, and
+maintain a history of your project.
+
+Using git:  
+Start by initializing a GitHub repository, committing your initial code, and using git status and git log to
+manage and track changes.
+
+Advanced git interaction:  
+Use advanced commands like git diff to visualize changes, git stash to temporarily hide
+changes, and git tag to mark significant milestones.
+
+Undoing things:  
+Use git reset and git revert to undo changes and address errors in a controlled manner.
+
+Branching and merging:  
+Create branches for feature development using git branch, switch between branches with git
+checkout, and merge changes using git merge.
+
+Secure shells & API keys:  
+Ensure security by using SSH keys and managing sensitive data like API keys properly.
+
+Solving conflicts:  
+Resolve conflicts that arise from merging branches using git merge or pull requests.
+
+Pull requests:  
+Open pull requests to propose changes, review code, and discuss modifications with your team.
+
+Code reviews:  
+Participate in code reviews to maintain code quality, identify improvements, and ensure best practices.
+
+Managing projects:  
+Organize your project using project boards, milestones, and issues to track progress and prioritize
+tasks.
+
+**Putting it all together**
+
+Imagine you're assigned to add a new feature to your project: a user authentication system. Here's how you'd apply your
+skills:
+
+Before version control:  
+Working with your development team and stakeholders you define the feature's scope and
+priorities. From the business requirements you develop user stories from which the team can build out tasks. Review the
+tasks your team created and discuss expected outcomes.
+
+Version control systems:  
+You create a feature branch for the authentication system on the app's existing repository that
+is already located on GitHub. Your team uses this new branch to begin to work on the tasks associated with the feature
+request.All progress is tracked in real time and documented with comments in GitHub.
+
+```text
+# Create a new feature branch
+git checkout -b feature/user-authentication
+```
+
+Advanced git interaction:  
+You use git diff to view and compare code changes and look back at the history of changes.
+When needed you can use git diff to compare whole branches as the feature becomes more robust. As you get closer to
+completing the feature you create tags to mark development milestones. When feature release is approaching, you can use
+a milestone to share progress with stakeholders.
+
+```text
+# View code changes
+git diff
+```
+
+```text
+# View commit history
+git log
+```
+
+```text
+# Create a new tag
+git tag v1.0.0
+```
+
+```text
+# Compare branches
+git diff feature/user-authentication main
+```
+
+Undoing things:  
+As you encounter issues, you have stable milestones you know you can restore back. You can stash away
+pending changes or, safely undo changes using Git's commands.
+
+```text
+# Stash changes
+git stash
+```
+
+```text
+# Restore changes from stash
+git stash pop
+```
+
+```text
+# Undo changes in working directory
+git checkout -- <file>
+```
+
+Branching and merging:  
+Your team makes sure to keep up with branching and merging changes. The team tests their changes
+in the feature branch to avoid introducing any issues or bugs into the main branch.
+
+```text
+# Merge changes from feature branch to main
+git checkout main
+git merge feature/user-authentication
+```
+
+```text
+# Delete feature branch
+git branch -d feature/user-authentication
+```
+
+Solving Conflicts:  
+As code conflicts arise during merging, you attempt to automerge. When deeper conflicts arise, you
+gather your team and address them collaboratively.
+
+```text
+# Attempt to automerge
+git merge feature/user-authentication
+```
+
+```text
+# Resolve conflicts manually
+# Edit files to resolve conflicts
+git add <resolved-files>
+git commit -m "Resolved conflicts"
+```
+
+Pull requests and code reviews:  
+One of your team members opens up a pull request for your feature branch. It is finally
+time to merge our feature into the main branch. Automated tests run against the code in question and your team schedules
+a code review. You prepare to gather and track feedback.
+
+```text
+# Push changes and open pull request
+git push origin feature/user-authentication
+```
+
+```text
+# Automated tests run in CI/CD pipeline
+# Pull request is reviewed
+# Feedback is addressed
+```
+
+Code reviews:  
+All concerned parties participate in code reviews. Team members address the group and review their code
+additions. Tests and metrics are also reviewed. The team collaborates at addressing feedback and ensuring high-quality
+code.
+
+Managing projects:   
+Throughout the project, and even after development efforts have concluded, you continue to track the
+progress of your feature using project boards, milestones, and issues. Development is iterative and your team will
+continue to work on features as feedback and requests come in from stakeholders.
+
+By applying your skills across the development life-cycle, you've successfully contributed to the project's growth and
+demonstrated your expertise in IT and project management.
 
 ### Preparing your Resume
 
