@@ -1,36 +1,36 @@
-# GitandHub
+# Git and GitHub
 
 <!-- TOC -->
-
-* [GitandHub](#gitandhub)
-    * [MODULE 1](#module-1)
-        * [Introduction](#introduction)
-        * [Before Version Control](#before-version-control)
-        * [Version Control Systems](#version-control-systems)
-        * [Using Git](#using-git)
-        * [Glossary](#glossary)
-        * [Qwiklabs Assessment](#qwiklabs-assessment)
-    * [MODULE 2](#module-2)
-        * [Advanced Git Interaction](#advanced-git-interaction)
-        * [Undoing Things](#undoing-things)
-        * [Branching and Merging](#branching-and-merging)
-        * [Glossary](#glossary-1)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-1)
-    * [MODULE 3](#module-3)
-        * [Introduction to GitHub](#introduction-to-GitHub)
-        * [Using a Remote Repository](#using-a-remote-repository)
-        * [Secure Shells & API Keys](#secure-shells--api-keys)
-        * [Solving Conflicts](#solving-conflicts)
-        * [Glossary](#glossary-2)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-2)
-    * [MODULE 4](#module-4)
-        * [Pul Requests](#pul-requests)
-        * [Code Reviews](#code-reviews)
-        * [Managing Projects](#managing-projects)
-        * [Qwiklabs Assessment](#qwiklabs-assessment-3)
-        * [Preparing your Resume](#preparing-your-resume)
-        * [Wrap Up](#wrap-up)
-
+* [Git and GitHub](#git-and-github)
+  * [MODULE 1](#module-1)
+    * [Introduction](#introduction)
+    * [Before Version Control](#before-version-control)
+    * [Version Control Systems](#version-control-systems)
+    * [Using Git](#using-git)
+    * [Glossary](#glossary)
+    * [Qwiklab Assessment](#qwiklab-assessment)
+  * [MODULE 2](#module-2)
+    * [Advanced Git Interaction](#advanced-git-interaction)
+    * [Undoing Things](#undoing-things)
+    * [Branching and Merging](#branching-and-merging)
+    * [Glossary](#glossary-1)
+    * [Qwiklab Assessment](#qwiklab-assessment-1)
+  * [MODULE 3](#module-3)
+    * [Introduction to GitHub](#introduction-to-github)
+    * [Using a Remote Repository](#using-a-remote-repository)
+    * [Secure Shells & API Keys](#secure-shells--api-keys)
+    * [Solving Conflicts](#solving-conflicts)
+    * [Glossary](#glossary-2)
+    * [Qwiklab Assessment](#qwiklab-assessment-2)
+  * [MODULE 4](#module-4)
+    * [Pul Requests](#pul-requests)
+    * [Code Reviews](#code-reviews)
+    * [Managing Projects](#managing-projects)
+    * [Glossary](#glossary-3)
+    * [Qwiklab Assessment](#qwiklab-assessment-3)
+    * [IT Skills in action](#it-skills-in-action)
+    * [Preparing your Resume](#preparing-your-resume)
+    * [Wrap Up](#wrap-up)
 <!-- TOC -->
 
 ## MODULE 1
@@ -58,7 +58,7 @@
     - output includes only the lines that are different between two files
     - There are a lot of other tools to compare files.
         - Ex: wdiff (highlights words changed instead of lines)
-        - Ex: meld, KDiff3, or vimdiff (graphical tools display diffs side by side using colors)
+        - Ex: meld, KDiff3, or vim diff (graphical tools display diffs side by side using colors)
    ```shell
    diff diffs/rearrange_1.py diffs/rearrange_2.py 
    ```
@@ -87,19 +87,11 @@
         - `patch` command can detect that there were changes made to the file and will do its best to apply the diff
           anyway
         - structure, it's easy even for larger files
-   ```shell
+   ```text
    cat diffs/cpu_usage.py
-   ```
-   ```shell
    diff -u diffs/cpu_usage.py diffs/cpu_usage_fixed.py > diffs/cpu_usage.diff
-   ```
-   ```shell
    cat diffs/cpu_usage.diff
-   ```
-   ```shell
    patch diffs/cpu_usage.py < diffs/cpu_usage.diff
-   ```
-      ```shell
    cat diffs/cpu_usage.py
    ```
 4. Practical Application of diff and patch
@@ -225,20 +217,20 @@
     cat example_commit.txt
     ...
     git log
-    commit 5ed482c636ac2d5a79dd33cb559241c4cc8dd288 (HEAD -> main, origin/main)
-    Author: praveen <praveen.goprog@gmail.com>
+    commit .....36ac2d5a79dd33cb559241c4cc8dd288 (HEAD -> main, origin/main)
+    Author: user.name <user.email>
     Date:   Fri Mar 21 23:59:46 2025 +0530
     
         m1_anatomy-of-commit
     
-    commit b8fdb22d97e6f3dd05076ef92047297248a04c2c
-    Author: praveen <praveen.goprog@gmail.com>
+    commit .....7e6f3dd05076ef92047297248a04c2c
+    Author: user.name <user.email>
     Date:   Fri Mar 21 23:43:31 2025 +0530
     
         added content in readme
     :
     ```
-    - `5ed482c636ac2d5a79dd33cb559241c4cc8dd288` : commit identifier
+    - `.....6ac2d5a79dd33cb559241c4cc8dd288` : commit identifier
     - `(HEAD -> main)` : Head indicator is point to the master branch
     - `Author: ......` : show the name and email of the person committed
     - `Date: ...` : date on which the message was committed
@@ -279,7 +271,7 @@
 * Git log: A log that displays commit messages
 * Git staging area: A file maintained by Git that contains all the information about what files and changes are going to
 * go into the next commit
-* Modified files: A stage where changes have been made to a file, but the have not been stored or committed
+* Modified files: A stage where changes have been made to a file, but they have not been stored or committed
 * Patch: A command that can detect that there were changes made to the file and will do its best to apply the changes
 * Repository: An organization system of files that contain separate software projects
 * Source Control Management (SCM): A tool similar to VCS to store source code
@@ -290,7 +282,7 @@
   the
 * same coding projects together, and stores the history of that code and configuration
 
-### Qwiklabs Assessment
+### Qwiklab Assessment
 
 In this scenario, you are a project lead in an IT company. You and your team are working on a huge project, which
 consists of multiple functionalities and modules. This project is evolving over time and so your team is expecting a lot
@@ -484,7 +476,7 @@ making commits.
     ----
     git add gather-information.sh
     git commit --amend
-    [main 56586c7] Add two files
+    [main ....c7] Add two files
     Date: Sat Mar 22 03:03:22 2025 +0530
     2 files changed, 0 insertions(+), 0 deletions(-)
     create mode 100644 changes/auto-update.py
@@ -503,10 +495,10 @@ making commits.
     ----
     ./all_checks.py
     Traceback (most recent call last):
-      File "/Users/praveen/PycharmProjects/GitandHub/./changes/all_checks.py", line 23, in <module>
+      File "/Users/username/PycharmProjects/Git_and_Hub/./changes/all_checks.py", line 23, in <module>
         main()
         ~~~~^^
-      File "/Users/praveen/PycharmProjects/GitandHub/./changes/all_checks.py", line 15, in main
+      File "/Users/username/PycharmProjects/Git_and_Hub/./changes/all_checks.py", line 15, in main
         if disk_full():
            ^^^^^^^^^
     NameError: name 'disk_full' is not defined
@@ -525,7 +517,7 @@ making commits.
     - these hash codes are used to guarantee the consistency of our repository means that we get exactly what we expect
     ```text
     git log -1
-    # e3c0478ed90f3de8c1e2648ae6e95e54429bcda4
+    # ......8ed90f3de8c1e2648ae6e95e54429....
     git show <commit id>
     git show e3 # not enough
     git show e3c0 # enough
@@ -654,28 +646,28 @@ making commits.
    ----
    # fast-forward merge
    git merge even-better-feature
-   Updating ae37c36..d07cbaa
+   Updating ....c36..d07
    Fast-forward
     all_checks.py   | 1 +
-    free_memeory.py | 7 +++++++
+    free_memory.py | 7 +++++++
     2 files changed, 8 insertions(+)
-    create mode 100644 free_memeory.py
+    create mode 100644 free_memory.py
    ----
    git log
    commit ......e3482fa5580c82459f0b96d7d167d363 (HEAD -> main, even-better-feature)
-   Author: praveen <...............>
+   Author: user.name <user.emil>
    Date:   Sat Mar 22 23:50:38 2025 +0530
    
        free memory first file
    
    commit ......0db4062f328da3122a963c8ea17162ce
-   Author: praveen <...............>
+   Author: user.name <user.emil>
    Date:   Sat Mar 22 23:41:02 2025 +0530
    
-       added shabang
+       added shebang
    
    commit ......b99035d493f05906ce4c8a226ce1eab
-   Author: praveen <...............>
+   Author: user.name <user.emil>
    Date:   Sat Mar 22 23:38:28 2025 +0530
    
        check first commit
@@ -693,14 +685,14 @@ making commits.
    ----
    git checkout even-better-feature
    ----
-   nano free_memeory.py
+   nano free_memory.py
    git commit -a -m 'Print everything ok'
    ----
    git checkout main
    ----
    git merge even-better-feature
-   Auto-merging free_memeory.py
-   CONFLICT (content): Merge conflict in free_memeory.py
+   Auto-merging free_memory.py
+   CONFLICT (content): Merge conflict in free_memory.py
    Automatic merge failed; fix conflicts and then commit the result.
    ---- CONFLICT
    git status
@@ -711,11 +703,11 @@ making commits.
    
    Unmerged paths:
      (use "git add <file>..." to mark resolution)
-       both modified:   free_memeory.py
+       both modified:   free_memory.py
    
    no changes added to commit (use "git add" and/or "git commit -a")
    ----
-   nano free_memroy.py
+   nano free_memory.py
    # thankfully git has added info to our files which parts of code are conflicting
    # make changes as required and save and close the file
    git add free_memory.py
@@ -725,7 +717,7 @@ making commits.
      (use "git commit" to conclude merge)
    
    Changes to be committed:
-       modified:   free_memeory.py
+       modified:   free_memory.py
    ----
    # editor opens with default commit message created with `git merge` command
    git commit
@@ -737,8 +729,8 @@ making commits.
    | * cca1b47 (even-better-feature) Print everything ok
    * | 4b3dd40 Add comment in main function.
    |/  
-   * d07cbaa free memory first file
-   * 61fe639 added shabang
+   * d07 free memory first file
+   * 61fe639 added shebang
    * ae37c36 check first commit
    ----
    ```
@@ -792,7 +784,7 @@ making commits.
 - **Three-way merge**: A merge when the snapshots at the two branch tips with the most recent common ancestor, the
   commit before the divergence
 
-### Qwiklabs Assessment
+### Qwiklab Assessment
 
 In this lab, you'll use your knowledge of Git and Git commit history to check out an existing repo and make some changes
 to it. You'll also test what you learned about rolling back commits after bad changes in order to fix a script in the
@@ -931,7 +923,7 @@ repo and run it to produce the correct output.
         - serves a similar purpose as usernames and passwords, although system administrators and power users typically
           use the keys to automate procedures and achieve single sign-on.
         - Displaying the fingerprint of an SSH key is a useful way to verify that you're using the correct key and that
-          the remote server's key hasn't been tampered with.
+          the remote server's key has not been tampered with.
         - To display the fingerprint of an SSH key, you can use the ssh-keygen command-line tool.
 2. The SSH protocol
     - the word “shell” refers to a program that provides an interface for accessing another operating system
@@ -1181,11 +1173,11 @@ repo and run it to produce the correct output.
   SSH server: This establishes secure network connections, undergoes mutual authentication, and initiates encrypted
   login sessions or file transfers
 
-### Qwiklabs Assessment
+### Qwiklab Assessment
 
 In this lab, you'll practice the basics of interacting with GitHub. You'll practice setting up an account, logging in,
 creating a repository, making changes on the local machine, and pushing changes back to the remote repository. We use
-these git operations to share changes from the remote repository to the local repository and vice-versa.
+these git operations to share changes from the remote repository to the local repository and vice versa.
 
 **What you'll do**
 
@@ -1398,7 +1390,7 @@ these git operations to share changes from the remote repository to the local re
 - **Pull request**: A procedure where new code is examined before it is merged to create a branch or master branch
 - **Squash commits**: The decision add commit messages together and an editor opens to make any necessary changes
 
-### Qwiklabs Assessment
+### Qwiklab Assessment
 
 For this project, you'll need to fork an existing repository, fix a bug in a script, push your commit to GitHub, and
 create a pull request with your commit.
